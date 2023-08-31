@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:rentatouille/model/auth_data.dart';
 
 class AuthProvider {
+  static GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
   static final _auth = FirebaseAuth.instance;
   static final _firestore = FirebaseFirestore.instance;
 
   static Future<UserCredential> register(String password, String email) async {
     try {
+      FocusManager.instance.primaryFocus?.unfocus();
       final user = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -32,8 +35,9 @@ class AuthProvider {
     }
   }
 
-  static Future<UserCredential> login(String email, String password) async {
+  static Future<UserCredential?> login(String email, String password) async {
     try {
+      FocusManager.instance.primaryFocus?.unfocus();
       final creds = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -43,7 +47,16 @@ class AuthProvider {
     } catch (e) {
       debugPrint("Error in Auth Provider");
       debugPrint(e.toString());
-      rethrow;
+
+      scaffoldMessengerKey.currentState!.showSnackBar(
+        const SnackBar(
+          content: Text("Invalid login credentials"),
+          duration: Duration(seconds: 3),
+          backgroundColor: Colors.red,
+        ),
+      );
+
+      return null;
     }
   }
 
