@@ -10,13 +10,13 @@ class Home extends StatelessWidget {
     return Center(
         child: Column(
       children: [
-        Text("home"),
+        const Text("home"),
         OutlinedButton(
           onPressed: () async {
             await GoogleAuthHelper.signOut();
             await AuthProvider.logout();
           },
-          child: const Text("logout"),
+          child: Text(AuthProvider.getCurrentUserEmail().toString()),
         )
       ],
     ));

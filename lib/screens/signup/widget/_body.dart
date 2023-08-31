@@ -40,13 +40,14 @@ class __BodyState extends State<_Body> {
                 isLoading
                     ? const CircularProgressIndicator()
                     : ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all<Size>(
-                              const Size(300, 50)),
-                          foregroundColor: MaterialStateProperty.all<Color>(
-                              CustomColors.lightGrey),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              CustomColors.accent),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          onPrimary: CustomColors.lightGrey,
+                          fixedSize: const Size(200, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: const BorderSide(color: Colors.white),
+                          ),
                         ),
                         onPressed: () async {
                           final form = _Body._formKey.currentState;

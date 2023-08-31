@@ -27,7 +27,6 @@ class _BodyState extends State<_Body> {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             RichText(
