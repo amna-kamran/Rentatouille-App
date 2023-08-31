@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rentatouille/constants/assets.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
-import 'package:rentatouille/services/auth/google_auth.dart';
+import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
 import 'package:rentatouille/theme/colors.dart';
 
 class GoogleLoginButton extends StatelessWidget {

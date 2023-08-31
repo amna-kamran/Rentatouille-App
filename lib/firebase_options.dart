@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,39 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCbus3amw4G1lkJ0-otHDqk7GneW6IGkPE',
-    appId: '1:550589088686:web:a23cf7abe3ab65bf547e3f',
-    messagingSenderId: '550589088686',
-    projectId: 'rentatouille-f9b6c',
-    authDomain: 'rentatouille-f9b6c.firebaseapp.com',
-    storageBucket: 'rentatouille-f9b6c.appspot.com',
+    apiKey: 'AIzaSyD_AF-pHW2cnnpTlpZFG-rA9ZRvPQAF9Ss',
+    appId: '1:46823713015:web:e9ca0b96f46fdccc37cbf2',
+    messagingSenderId: '46823713015',
+    projectId: 'rentatouille-c4538',
+    authDomain: 'rentatouille-c4538.firebaseapp.com',
+    storageBucket: 'rentatouille-c4538.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCjSsHwxAMAKzzt2PGNjCjy1cygoiBGJd0',
-    appId: '1:550589088686:android:79dee42b75c6a5fb547e3f',
-    messagingSenderId: '550589088686',
-    projectId: 'rentatouille-f9b6c',
-    storageBucket: 'rentatouille-f9b6c.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAqthJbD46DyuqKr6jA0JEQfqTGWQcYHkk',
-    appId: '1:550589088686:ios:092d56aff18d21c5547e3f',
-    messagingSenderId: '550589088686',
-    projectId: 'rentatouille-f9b6c',
-    storageBucket: 'rentatouille-f9b6c.appspot.com',
-    iosClientId: '550589088686-aareloq5rcr0vrgbevqal3cah4l1tpgq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.rentatouille',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAqthJbD46DyuqKr6jA0JEQfqTGWQcYHkk',
-    appId: '1:550589088686:ios:6cc303363eec7809547e3f',
-    messagingSenderId: '550589088686',
-    projectId: 'rentatouille-f9b6c',
-    storageBucket: 'rentatouille-f9b6c.appspot.com',
-    iosClientId: '550589088686-s3n6emub92ame6im99i2h0k8c6o0tmf8.apps.googleusercontent.com',
-    iosBundleId: 'com.example.rentatouille.RunnerTests',
+    apiKey: 'AIzaSyA7NDDIPEmRztvcIHBNfXb9UPA2rFUWOzA',
+    appId: '1:46823713015:android:b28c5e860c34c6b037cbf2',
+    messagingSenderId: '46823713015',
+    projectId: 'rentatouille-c4538',
+    storageBucket: 'rentatouille-c4538.appspot.com',
   );
 }

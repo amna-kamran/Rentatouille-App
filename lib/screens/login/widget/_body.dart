@@ -14,7 +14,8 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return FormBuilder(
+      key: _Body._formKey,
       child: Container(
         padding:
             const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
@@ -58,14 +59,14 @@ class _BodyState extends State<_Body> {
               fieldType: FieldType.email,
               labelText: 'Email',
             ),
-            const SizedBox(height: 10),
+            Spaces.h10,
             AppInputTextField(
               fieldType: FieldType.password,
               labelText: 'Password',
               minLength: 6,
               maxLength: 20,
             ),
-            const SizedBox(height: 20),
+            Spaces.h20,
             isLoading
                 ? const CircularProgressIndicator()
                 : ElevatedButton(
@@ -79,15 +80,20 @@ class _BodyState extends State<_Body> {
                       ),
                     ),
                     onPressed: () async {
+                      debugPrint("pressed");
                       final form = _Body._formKey.currentState;
                       final isValid = form!.saveAndValidate();
                       if (!isValid) return;
 
                       final data = form.value;
 
-                      setState(() {
-                        isLoading = true;
-                      });
+                      setState(
+                        () {
+                          isLoading = true;
+                        },
+                      );
+                      debugPrint(data['Email']);
+                      debugPrint(data['Password']);
 
                       await AuthProvider.login(
                         data['Email'],

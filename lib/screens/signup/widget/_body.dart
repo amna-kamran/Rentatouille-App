@@ -65,10 +65,7 @@ class __BodyState extends State<_Body> {
                             data['Password'],
                             data['Email'],
                           );
-                          await AuthProvider.login(
-                            data['Email'],
-                            data['Password'],
-                          );
+
                           setState(
                             () {
                               isLoading = false;

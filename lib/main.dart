@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rentatouille/screens/signup/register.dart';
+import 'package:provider/provider.dart';
+import 'package:rentatouille/services/auth/auth_provider.dart';
+import 'package:rentatouille/wrapper.dart';
 
 import 'firebase_options.dart';
 
@@ -20,8 +22,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-    return const MaterialApp(
-      home: RegisterScreen(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthProvider>(
+          create: (_) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
+      ),
     );
   }
 }

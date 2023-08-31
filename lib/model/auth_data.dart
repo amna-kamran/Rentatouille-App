@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class AuthData {
-  final String email;
+  final String? email;
 
   AuthData({
     required this.email,
