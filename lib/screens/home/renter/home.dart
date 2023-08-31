@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class RenterHome extends StatelessWidget {
+  const RenterHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("home"),
+          const Text("Renter"),
           OutlinedButton(
             onPressed: () async {
               await GoogleAuthHelper.signOut();
