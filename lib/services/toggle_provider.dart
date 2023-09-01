@@ -6,17 +6,9 @@ class ToggleProvider extends ChangeNotifier {
   bool get isProprietorMode => _isProprietorMode;
 
   void toggleMode() {
-    _isProprietorMode = !_isProprietorMode;
-    notifyListeners();
-  }
-
-  void setToRenterMode() {
-    _isProprietorMode = false;
-    notifyListeners();
-  }
-
-  void setToProprietorMode() {
-    _isProprietorMode = true;
+    _isProprietorMode == false
+        ? _isProprietorMode = true
+        : _isProprietorMode = false;
     notifyListeners();
   }
 }

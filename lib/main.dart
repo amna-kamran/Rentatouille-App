@@ -6,6 +6,7 @@ import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/wrapper.dart';
 
 import 'firebase_options.dart';
+import 'services/bottom_navbar_provider.dart';
 import 'services/toggle_provider.dart';
 
 void main(List<String> args) async {
@@ -25,9 +26,14 @@ class MyApp extends StatelessWidget {
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ToggleProvider()),
+        ChangeNotifierProvider(
+          create: (context) => ToggleProvider(),
+        ),
         Provider<AuthProvider>(
           create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BottomNavigationBarProvider(),
         ),
       ],
       child: MaterialApp(

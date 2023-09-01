@@ -1,25 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:rentatouille/services/auth/auth_provider.dart';
-import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:rentatouille/services/bottom_navbar_provider.dart';
+
+import 'widgets/dashboard.dart';
+import 'widgets/profile.dart';
+import 'widgets/rent_property.dart';
 
 class ProprieterHome extends StatelessWidget {
   const ProprieterHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text("Proprieter"),
-          OutlinedButton(
-            onPressed: () async {
-              await GoogleAuthHelper.signOut();
-              await AuthProvider.logout();
-            },
-            child: Text(AuthProvider.getCurrentUserEmail().toString()),
-          )
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
+        currentIndex:
+            Provider.of<BottomNavigationBarProvider>(context).currentIndex,
+        onTap: (int index) {
+          Provider.of<BottomNavigationBarProvider>(context, listen: false)
+              .currentIndex = index;
+        },
+      ),
+      body: Consumer<BottomNavigationBarProvider>(
+        builder: (context, bottomNavigationBarProvider, child) {
+          return IndexedStack(
+            index: bottomNavigationBarProvider.currentIndex,
+            children: const [
+              DashboardScreen(),
+              RentScreen(),
+              ProfileScreen(),
+            ],
+          );
+        },
       ),
     );
   }
