@@ -15,15 +15,24 @@ class RenterHome extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.file_tray_full_outline),
+            icon: Icon(
+              Ionicons.file_tray_full_outline,
+              size: 28,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.home_outline),
+            icon: Icon(
+              Ionicons.home_outline,
+              size: 28,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Ionicons.person_outline),
+            icon: Icon(
+              Ionicons.person_outline,
+              size: 28,
+            ),
             label: '',
           ),
         ],
@@ -35,9 +44,9 @@ class RenterHome extends StatelessWidget {
         },
         selectedIconTheme:
             const IconThemeData(color: Color.fromARGB(255, 26, 184, 92)),
-        unselectedIconTheme: const IconThemeData(color: Colors.grey),
-        showSelectedLabels: false, // Hide selected labels
-        showUnselectedLabels: false, // Hide unselected labels
+        unselectedIconTheme: const IconThemeData(color: Colors.black54),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
       body: Consumer<BottomNavigationBarProvider>(
         builder: (context, bottomNavigationBarProvider, child) {
