@@ -9,6 +9,8 @@ import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'services/toggle_provider.dart';
 
 class Wrapper extends StatelessWidget {
+  const Wrapper({super.key});
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rentatouille/services/bottom_navbar_provider.dart';
-import 'widgets/profile.dart';
+import 'package:rentatouille/screens/home/renter/widgets/profile/profile.dart';
 import 'widgets/rent_property.dart';
 
 class ProprieterHome extends StatelessWidget {

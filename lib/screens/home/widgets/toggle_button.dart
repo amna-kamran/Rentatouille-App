@@ -4,7 +4,9 @@ import 'package:rentatouille/services/bottom_navbar_provider.dart';
 import 'package:rentatouille/services/toggle_provider.dart';
 
 class ToggleButtonApp extends StatefulWidget {
-  const ToggleButtonApp({super.key});
+  const ToggleButtonApp({
+    super.key,
+  });
 
   @override
   ToggleButtonAppState createState() => ToggleButtonAppState();
@@ -23,19 +25,23 @@ class ToggleButtonAppState extends State<ToggleButtonApp> {
           bottomNavBarProvider.resetIndex();
         },
         child: Container(
-          width: 100,
-          height: 50,
+          padding: const EdgeInsets.only(right: 5, left: 5),
+          width: 55,
+          height: 25,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: toggleProvider.isProprietorMode ? Colors.red : Colors.green,
+            borderRadius: BorderRadius.circular(20),
+            color: toggleProvider.isProprietorMode
+                ? Colors.green
+                : Colors
+                    .grey, // Change color to grey when not in proprietor mode
           ),
           child: Align(
             alignment: toggleProvider.isProprietorMode
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: Container(
-              width: 40,
-              height: 40,
+              width: 20,
+              height: 20,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
