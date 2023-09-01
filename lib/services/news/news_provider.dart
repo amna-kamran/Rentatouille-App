@@ -10,17 +10,32 @@ class NewsProvider with ChangeNotifier {
   static NewsProvider s(BuildContext context) =>
       Provider.of<NewsProvider>(context, listen: true);
 
-  List<News> newsArticleList = [];
-  Future<void> fetchNews(String uri) async {
+  List<News> topNewsList = [];
+  List<News> recentNewsList = [];
+
+  Future<List<News>> fetchDataAndUpdateList(String uri) async {
     try {
       Response response = await get(Uri.parse(uri));
       Map data = jsonDecode(response.body);
       List newsArticles = data["articles"];
-      newsArticleList =
+      List<News> targetList =
           newsArticles.map((articleObj) => News.fromMap(articleObj)).toList();
-      notifyListeners();
+
+      return targetList;
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<void> fetchTopNews(String uri) async {
+    List<News> updatedList = await fetchDataAndUpdateList(uri);
+    topNewsList = updatedList;
+    notifyListeners();
+  }
+
+  Future<void> fetchRecentNews(String uri) async {
+    List<News> updatedList = await fetchDataAndUpdateList(uri);
+    recentNewsList = updatedList;
+    notifyListeners();
   }
 }

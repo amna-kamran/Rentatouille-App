@@ -19,14 +19,14 @@ class _RecentNewsListState extends State<RecentNewsList> {
   @override
   void initState() {
     super.initState();
-    Provider.of<NewsProvider>(context, listen: false).fetchNews(URL.news);
+    Provider.of<NewsProvider>(context, listen: false).fetchRecentNews(URL.news);
   }
 
   @override
   Widget build(BuildContext context) {
     final newsProvider = Provider.of<NewsProvider>(context);
 
-    List<News>? topNews = newsProvider.newsArticleList;
+    List<News>? topNews = newsProvider.recentNewsList;
 
     return Column(
       children: topNews.map((e) => NewsTile(news: e)).toList(),
