@@ -24,10 +24,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Column(
                 children: [
                   Container(
+                    padding: const EdgeInsets.only(left: 15, bottom: 40),
                     height: MediaQuery.of(context).size.height * 0.25,
                     color: Provider.of<ToggleProvider>(context).isProprietorMode
                         ? Colors.green
                         : Colors.black54,
+                    child: const Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 25,
+                                backgroundImage:
+                                    AssetImage('assets/profile_image.png'),
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                'John Doe',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          // Add any other widgets to the right of the circle and name
+                        ],
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: Container(
