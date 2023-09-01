@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:rentatouille/services/bottom_navbar_provider.dart';
 import 'package:rentatouille/screens/home/renter/widgets/profile/profile.dart';
@@ -13,12 +14,18 @@ class ProprieterHome extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(
+              Ionicons.home_outline,
+              size: 28,
+            ),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(
+              Ionicons.person_outline,
+              size: 28,
+            ),
+            label: '',
           ),
         ],
         currentIndex:
@@ -27,6 +34,11 @@ class ProprieterHome extends StatelessWidget {
           Provider.of<BottomNavigationBarProvider>(context, listen: false)
               .currentIndex = index;
         },
+        selectedIconTheme:
+            const IconThemeData(color: Color.fromARGB(255, 26, 184, 92)),
+        unselectedIconTheme: const IconThemeData(color: Colors.black54),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
       body: Consumer<BottomNavigationBarProvider>(
         builder: (context, bottomNavigationBarProvider, child) {
