@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
+import 'package:rentatouille/services/news/news_provider.dart';
 import 'package:rentatouille/wrapper.dart';
 
 import 'firebase_options.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => BottomNavigationBarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => NewsProvider(),
         ),
       ],
       child: MaterialApp(
