@@ -6,7 +6,7 @@ import 'widgets/recent_news_list.dart';
 import 'widgets/top_news_carousal.dart';
 
 class NewsHomeScreen extends StatefulWidget {
-  const NewsHomeScreen({super.key});
+  const NewsHomeScreen({Key? key}) : super(key: key);
 
   @override
   State<NewsHomeScreen> createState() => _NewsHomeScreenState();
@@ -14,17 +14,43 @@ class NewsHomeScreen extends StatefulWidget {
 
 class _NewsHomeScreenState extends State<NewsHomeScreen> {
   final date = DateTime.now();
+  final ScrollController _scrollController = ScrollController();
+  bool _showScrollToTopButton = false;
 
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.offset >= 100) {
+        setState(() {
+          _showScrollToTopButton = true;
+        });
+      } else {
+        setState(() {
+          _showScrollToTopButton = false;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _showScrollToTopButton
+          ? FloatingActionButton(
+              onPressed: () {
+                _scrollController.animateTo(
+                  0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: const Icon(Icons.arrow_upward),
+            )
+          : null,
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -33,7 +59,9 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
                 Text(
                   DateFormat('EEEE, d MMM, yyyy').format(date).toString(),
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
                 ),
                 Spaces.h5,
                 const Text(
@@ -47,8 +75,10 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
                   children: [
                     Text(
                       "Top News",
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Spaces.w10,
                     Icon(
@@ -58,7 +88,7 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
                   ],
                 ),
                 Spaces.h15,
-                const TopNewsList(),
+                const RecentNewsList(),
               ],
             ),
           ),

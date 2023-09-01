@@ -6,16 +6,16 @@ import 'package:rentatouille/core/news/news_tile.dart';
 import 'package:rentatouille/model/news_data.dart';
 import 'package:rentatouille/services/news/news_provider.dart';
 
-class TopNewsList extends StatefulWidget {
-  const TopNewsList({
+class RecentNewsList extends StatefulWidget {
+  const RecentNewsList({
     super.key,
   });
 
   @override
-  State<TopNewsList> createState() => _TopNewsListState();
+  State<RecentNewsList> createState() => _RecentNewsListState();
 }
 
-class _TopNewsListState extends State<TopNewsList> {
+class _RecentNewsListState extends State<RecentNewsList> {
   @override
   void initState() {
     super.initState();
