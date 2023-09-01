@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rentatouille/constants/spaces.dart';
 import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
+import 'package:rentatouille/services/auth/auth_provider.dart';
+import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
 import 'package:rentatouille/services/toggle_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -29,22 +32,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Provider.of<ToggleProvider>(context).isProprietorMode
                         ? Colors.green
                         : Colors.black54,
-                    child: const Align(
+                    child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 25,
                                 backgroundImage:
                                     AssetImage('assets/profile_image.png'),
                               ),
-                              SizedBox(width: 12),
+                              const SizedBox(width: 12),
                               Text(
-                                'John Doe',
-                                style: TextStyle(
+                                AuthProvider.getCurrentUserEmail().toString(),
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -52,16 +55,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ],
                           ),
-                          // Add any other widgets to the right of the circle and name
                         ],
                       ),
                     ),
                   ),
                   Expanded(
                     child: Container(
+                      padding: const EdgeInsets.only(left: 20),
                       color: Colors.white,
-                      child: const Center(
-                        child: Text("Profile"),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 40),
+                          ListTile(
+                            onTap: () {
+                              AuthProvider.logout();
+                              GoogleAuthHelper.signOut();
+
+                              debugPrint("Logout tapped");
+                            },
+                            title: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Logout",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.green,
+                                  size: 16,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
