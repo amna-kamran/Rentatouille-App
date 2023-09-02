@@ -8,6 +8,7 @@ import 'package:rentatouille/wrapper.dart';
 
 import 'firebase_options.dart';
 import 'services/bottom_navbar_provider.dart';
+import 'services/property/monthly_rent_provider.dart';
 import 'services/toggle_provider.dart';
 
 void main(List<String> args) async {
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => NewsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MonthlyRentProvider(),
         ),
       ],
       child: MaterialApp(

@@ -20,6 +20,8 @@ class AppInputTextField extends StatelessWidget {
   final FieldType fieldType;
   final int? minLength;
   final int? maxLength;
+  final TextEditingController? controller;
+  final void Function(String?)? onChanged;
 
   AppInputTextField({
     Key? key,
@@ -27,6 +29,8 @@ class AppInputTextField extends StatelessWidget {
     required this.fieldType,
     this.minLength,
     this.maxLength,
+    this.controller,
+    this.onChanged,
   }) : super(key: key) {
     assert(
       fieldType != FieldType.password ||
@@ -86,6 +90,8 @@ class AppInputTextField extends StatelessWidget {
         ),
       ),
       style: const TextStyle(color: CustomColors.mediumGrey),
+      controller: controller,
+      onChanged: onChanged,
       validator: FormBuilderValidators.compose(
         [
           FormBuilderValidators.required(),
