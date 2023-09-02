@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rentatouille/screens/home/renter/widgets/profile/profile.dart';
 import 'package:rentatouille/screens/news/home.dart';
 import 'package:rentatouille/services/bottom_navbar_provider.dart';
-import 'widgets/property.dart';
+import 'widgets/property_screen.dart';
 
 class RenterHome extends StatelessWidget {
   const RenterHome({super.key});

@@ -3,7 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:rentatouille/services/bottom_navbar_provider.dart';
 import 'package:rentatouille/screens/home/renter/widgets/profile/profile.dart';
-import 'widgets/rent_property.dart';
+import 'widgets/property/property_option.dart';
 
 class ProprieterHome extends StatelessWidget {
   const ProprieterHome({super.key});
@@ -45,7 +45,7 @@ class ProprieterHome extends StatelessWidget {
           return IndexedStack(
             index: bottomNavigationBarProvider.currentIndex,
             children: const [
-              RentScreen(),
+              PropertyOptionScreen(),
               ProfileScreen(),
             ],
           );
