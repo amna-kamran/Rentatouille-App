@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'add property/add_property.dart';
+
 class DraftScreen extends StatelessWidget {
   const DraftScreen({super.key});
 
@@ -15,7 +17,13 @@ class DraftScreen extends StatelessWidget {
             color: Colors.green,
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AddPropertyScreen(),
+                ),
+              );
+            },
             child: const Align(
               alignment: Alignment.center,
               child: Text(

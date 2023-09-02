@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rentatouille/constants/spaces.dart';
 import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
+import 'package:rentatouille/services/bottom_navbar_provider.dart';
 import 'package:rentatouille/services/toggle_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -18,6 +18,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final toggleProvider = Provider.of<ToggleProvider>(context);
+    final bottomNavBarProvider =
+        Provider.of<BottomNavigationBarProvider>(context);
     return Scaffold(
       body: Container(
         color: const Color.fromARGB(255, 54, 54, 54),
@@ -29,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     padding: const EdgeInsets.only(left: 15, bottom: 40),
                     height: MediaQuery.of(context).size.height * 0.25,
-                    color: Provider.of<ToggleProvider>(context).isProprietorMode
+                    color: toggleProvider.isProprietorMode
                         ? Colors.green
                         : Colors.black54,
                     child: Align(
@@ -117,17 +120,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Proprieter mode",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      ToggleButtonApp(),
+                      ToggleButtonApp(
+                        initialValue: toggleProvider.isProprietorMode,
+                        onToggle: (newValue) {
+                          toggleProvider.toggleMode();
+                          bottomNavBarProvider.resetIndex();
+                        },
+                        activeColor: Colors.green,
+                        inactiveColor: Colors.grey,
+                        activeIcon: Icons.check,
+                        inactiveIcon: Icons.close,
+                      ),
                     ],
                   ),
                 ),

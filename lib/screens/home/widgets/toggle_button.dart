@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rentatouille/services/bottom_navbar_provider.dart';
-import 'package:rentatouille/services/toggle_provider.dart';
 
 class ToggleButtonApp extends StatefulWidget {
+  final bool initialValue;
+  final Function(bool) onToggle;
+  final Color activeColor;
+  final Color inactiveColor;
+  final IconData activeIcon;
+  final IconData inactiveIcon;
+
   const ToggleButtonApp({
-    super.key,
-  });
+    Key? key,
+    required this.initialValue,
+    required this.onToggle,
+    this.activeColor = Colors.green,
+    this.inactiveColor = Colors.grey,
+    this.activeIcon = Icons.check,
+    this.inactiveIcon = Icons.close,
+  }) : super(key: key);
 
   @override
   ToggleButtonAppState createState() => ToggleButtonAppState();
 }
 
 class ToggleButtonAppState extends State<ToggleButtonApp> {
+  bool isToggled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isToggled = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final toggleProvider = Provider.of<ToggleProvider>(context);
-    final bottomNavBarProvider =
-        Provider.of<BottomNavigationBarProvider>(context);
     return Center(
       child: GestureDetector(
         onTap: () {
-          toggleProvider.toggleMode();
-          bottomNavBarProvider.resetIndex();
+          setState(() {
+            isToggled = !isToggled;
+          });
+          widget.onToggle(isToggled);
         },
         child: Container(
           padding: const EdgeInsets.only(right: 5, left: 5),
@@ -30,21 +47,20 @@ class ToggleButtonAppState extends State<ToggleButtonApp> {
           height: 25,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: toggleProvider.isProprietorMode
-                ? Colors.green
-                : Colors
-                    .grey, // Change color to grey when not in proprietor mode
+            color: isToggled ? widget.activeColor : widget.inactiveColor,
           ),
           child: Align(
-            alignment: toggleProvider.isProprietorMode
-                ? Alignment.centerRight
-                : Alignment.centerLeft,
+            alignment: isToggled ? Alignment.centerRight : Alignment.centerLeft,
             child: Container(
               width: 20,
               height: 20,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
+              ),
+              child: Icon(
+                isToggled ? widget.activeIcon : widget.inactiveIcon,
+                color: isToggled ? widget.activeColor : widget.inactiveColor,
               ),
             ),
           ),

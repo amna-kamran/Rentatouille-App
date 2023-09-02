@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:rentatouille/theme/colors.dart';
+
+import '../theme/colors.dart';
 
 enum FieldType {
   text,
@@ -10,6 +12,7 @@ enum FieldType {
   pincode,
   username,
   phoneNumber,
+  number,
 }
 
 class AppInputTextField extends StatelessWidget {
@@ -28,13 +31,11 @@ class AppInputTextField extends StatelessWidget {
     assert(
       fieldType != FieldType.password ||
           (minLength != null && maxLength != null),
-      'For password input type, you must provide both minLength and maxLength.',
     );
 
     assert(
       fieldType != FieldType.pincode ||
           (minLength != null && maxLength != null),
-      'For pincode input type, you must provide both minLength and maxLength.',
     );
   }
 
@@ -43,45 +44,56 @@ class AppInputTextField extends StatelessWidget {
     bool obscureText =
         fieldType == FieldType.password || fieldType == FieldType.pincode;
     bool isEmail = fieldType == FieldType.email;
+    bool isNumber = fieldType == FieldType.number;
 
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: FormBuilderTextField(
-        name: labelText,
-        obscureText: obscureText,
-        maxLength: maxLength,
-        decoration: InputDecoration(
-          labelText: labelText,
-          labelStyle: const TextStyle(
-            color: CustomColors.mediumGrey,
-          ),
-          filled: true,
-          fillColor: CustomColors.accent,
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
+    List<TextInputFormatter> inputFormatters = [];
+
+    if (isNumber) {
+      inputFormatters.add(FilteringTextInputFormatter.allow(RegExp(r'[0-9]')));
+    }
+
+    TextInputType keyboardType;
+
+    if (isNumber) {
+      keyboardType = TextInputType.number;
+    } else {
+      keyboardType = TextInputType.text;
+    }
+
+    return FormBuilderTextField(
+      name: labelText,
+      obscureText: obscureText,
+      maxLength: maxLength,
+      inputFormatters: inputFormatters,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(
+          color: CustomColors.mediumGrey,
         ),
-        style: const TextStyle(color: CustomColors.mediumGrey),
-        validator: FormBuilderValidators.compose(
-          [
-            FormBuilderValidators.required(),
-            if (minLength != null && obscureText)
-              FormBuilderValidators.minLength(minLength!),
-            if (maxLength != null) FormBuilderValidators.maxLength(maxLength!),
-            if (!obscureText && isEmail) FormBuilderValidators.email(),
-          ],
+        filled: true,
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.white,
+          ),
+          borderRadius: BorderRadius.circular(10),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.white,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      style: const TextStyle(color: CustomColors.mediumGrey),
+      validator: FormBuilderValidators.compose(
+        [
+          FormBuilderValidators.required(),
+          if (minLength != null && obscureText)
+            FormBuilderValidators.minLength(minLength!),
+          if (maxLength != null) FormBuilderValidators.maxLength(maxLength!),
+          if (!obscureText && isEmail) FormBuilderValidators.email(),
+        ],
       ),
     );
   }
