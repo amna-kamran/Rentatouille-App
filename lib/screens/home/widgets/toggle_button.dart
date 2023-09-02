@@ -5,8 +5,6 @@ class ToggleButtonApp extends StatefulWidget {
   final Function(bool) onToggle;
   final Color activeColor;
   final Color inactiveColor;
-  final IconData activeIcon;
-  final IconData inactiveIcon;
 
   const ToggleButtonApp({
     Key? key,
@@ -14,8 +12,6 @@ class ToggleButtonApp extends StatefulWidget {
     required this.onToggle,
     this.activeColor = Colors.green,
     this.inactiveColor = Colors.grey,
-    this.activeIcon = Icons.check,
-    this.inactiveIcon = Icons.close,
   }) : super(key: key);
 
   @override
@@ -54,13 +50,9 @@ class ToggleButtonAppState extends State<ToggleButtonApp> {
             child: Container(
               width: 20,
               height: 20,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
-              ),
-              child: Icon(
-                isToggled ? widget.activeIcon : widget.inactiveIcon,
-                color: isToggled ? widget.activeColor : widget.inactiveColor,
               ),
             ),
           ),
