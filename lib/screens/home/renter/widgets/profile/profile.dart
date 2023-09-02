@@ -133,13 +133,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ToggleButtonApp(
                         initialValue: toggleProvider.isProprietorMode,
                         onToggle: (newValue) {
-                          toggleProvider.toggleMode();
+                          toggleProvider.toggleProprieterMode();
                           bottomNavBarProvider.resetIndex();
                         },
                         activeColor: Colors.green,
                         inactiveColor: Colors.grey,
-                        activeIcon: Icons.check,
-                        inactiveIcon: Icons.close,
                       ),
                     ],
                   ),

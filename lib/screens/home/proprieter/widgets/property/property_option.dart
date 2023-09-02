@@ -5,14 +5,14 @@ import 'widgets/tab_bar.dart';
 import 'widgets/uploaded_screen.dart';
 
 class PropertyOptionScreen extends StatefulWidget {
-  const PropertyOptionScreen();
+  const PropertyOptionScreen({super.key});
 
   @override
-  _PropertyOptionScreenState createState() => _PropertyOptionScreenState();
+  PropertyOptionScreenState createState() => PropertyOptionScreenState();
 }
 
-class _PropertyOptionScreenState extends State<PropertyOptionScreen> {
-  int _currentIndex = 0;
+class PropertyOptionScreenState extends State<PropertyOptionScreen> {
+  int _currentIndex = 1;
   final List<Widget> _screens = [
     const DraftScreen(),
     const UploadedScreen(),

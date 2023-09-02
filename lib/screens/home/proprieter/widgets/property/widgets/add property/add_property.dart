@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rentatouille/constants/spaces.dart';
 import 'package:rentatouille/core/form_builder.dart';
+import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
+import 'package:rentatouille/services/toggle_provider.dart';
 import 'circle_button.dart';
 
 class AddPropertyScreen extends StatefulWidget {
@@ -26,6 +29,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final toggleProvider = Provider.of<ToggleProvider>(context);
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -124,6 +128,30 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                       labelText: "Address",
                       fieldType: FieldType.text,
                     ),
+                    divider,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            "Lounge",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        ToggleButtonApp(
+                          initialValue: toggleProvider.hasLounge,
+                          onToggle: (newValue) {
+                            toggleProvider.toggleLounge();
+                          },
+                          activeColor: Colors.green,
+                          inactiveColor: Colors.grey,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

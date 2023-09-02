@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         scaffoldMessengerKey: AuthProvider.scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+        home: const Wrapper(),
       ),
     );
   }
