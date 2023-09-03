@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rentatouille/constants/spaces.dart';
 import 'package:rentatouille/core/form_builder.dart';
 import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
+import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/property/monthly_rent_provider.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
 import 'package:rentatouille/services/toggle_provider.dart';
@@ -187,6 +188,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                 'address': data["Address"],
                 'lounge': toggleProvider.hasLounge,
                 'monthly rent': monthlyRentValue,
+                'user_id': AuthProvider.getCurrentUserId(),
               };
               PropertyProvider.create(propertyData);
             },

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:rentatouille/services/auth/auth_provider.dart';
 
 class PropertyProvider {
   static final _firestore = FirebaseFirestore.instance;
@@ -16,5 +17,12 @@ class PropertyProvider {
       debugPrint(e.toString());
       throw ("some error occurred");
     }
+  }
+
+  static fetchProperties() {
+    return FirebaseFirestore.instance
+        .collection('properties')
+        .where('user_id', isEqualTo: AuthProvider.getCurrentUserId())
+        .snapshots();
   }
 }
