@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rentatouille/constants/url.dart';
 import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
@@ -44,8 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               const CircleAvatar(
                                 radius: 25,
-                                backgroundImage:
-                                    AssetImage('assets/profile_image.png'),
+                                backgroundImage: AssetImage(URL.missingImg),
                               ),
                               const SizedBox(width: 12),
                               Text(

@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
 
 class Property {
   final String bedrooms;
@@ -9,6 +10,9 @@ class Property {
   final String address;
   final bool lounge;
   final String monthlyRent;
+  final String user_id;
+
+  // Constructor with named parameters to initialize properties
   Property({
     required this.bedrooms,
     required this.area,
@@ -17,8 +21,10 @@ class Property {
     required this.address,
     required this.lounge,
     required this.monthlyRent,
+    required this.user_id,
   });
 
+  // Copy constructor for creating a new Property with modified properties
   Property copyWith({
     String? bedrooms,
     String? area,
@@ -27,6 +33,7 @@ class Property {
     String? address,
     bool? lounge,
     String? monthlyRent,
+    String? user_id,
   }) {
     return Property(
       bedrooms: bedrooms ?? this.bedrooms,
@@ -36,9 +43,11 @@ class Property {
       address: address ?? this.address,
       lounge: lounge ?? this.lounge,
       monthlyRent: monthlyRent ?? this.monthlyRent,
+      user_id: user_id ?? this.user_id,
     );
   }
 
+  // Convert the Property object to a Map
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'bedrooms': bedrooms,
@@ -48,29 +57,47 @@ class Property {
       'address': address,
       'lounge': lounge,
       'monthlyRent': monthlyRent,
+      'user_id': user_id,
     };
   }
 
+  // Factory method to create a Property object from a Map
   factory Property.fromMap(Map<String, dynamic> map) {
-    return Property(
-      bedrooms: map['bedrooms'] as String,
-      area: map['area'] as String,
-      title: map['title'] as String,
-      description: map['description'] as String,
-      address: map['address'] as String,
-      lounge: map['lounge'] as bool,
-      monthlyRent: map['monthlyRent'] as String,
-    );
+    try {
+      return Property(
+        bedrooms: map['bedrooms'] as String? ?? 'Default Bedrooms',
+        area: map['area'] as String? ?? 'Default Area',
+        title: map['title'] as String? ?? 'Default Title',
+        description: map['description'] as String? ?? 'Default Description',
+        address: map['address'] as String? ?? 'Default Address',
+        lounge: map['lounge'] as bool? ?? false,
+        monthlyRent: map['monthlyRent'] as String? ?? 'Default Monthly Rent',
+        user_id: map['user_id'] as String? ?? 'Default User ID',
+      );
+    } catch (e) {
+      debugPrint('Error creating Property object from map: $e');
+      return Property(
+          bedrooms: "bedrooms",
+          area: "area",
+          title: "title",
+          description: "description",
+          address: "address",
+          lounge: false,
+          monthlyRent: "monthlyRent",
+          user_id: "user_id");
+    }
   }
 
+  // Convert the Property object to a JSON string
   String toJson() => json.encode(toMap());
 
+  // Factory method to create a Property object from a JSON string
   factory Property.fromJson(String source) =>
       Property.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Property(bedrooms: $bedrooms, area: $area, title: $title, description: $description, address: $address, lounge: $lounge, monthlyRent: $monthlyRent)';
+    return 'Property(bedrooms: $bedrooms, area: $area, title: $title, description: $description, address: $address, lounge: $lounge, monthlyRent: $monthlyRent, user_id: $user_id)';
   }
 
   @override
@@ -83,7 +110,8 @@ class Property {
         other.description == description &&
         other.address == address &&
         other.lounge == lounge &&
-        other.monthlyRent == monthlyRent;
+        other.monthlyRent == monthlyRent &&
+        other.user_id == user_id;
   }
 
   @override
@@ -94,6 +122,7 @@ class Property {
         description.hashCode ^
         address.hashCode ^
         lounge.hashCode ^
-        monthlyRent.hashCode;
+        monthlyRent.hashCode ^
+        user_id.hashCode;
   }
 }

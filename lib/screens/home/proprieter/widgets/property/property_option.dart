@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rentatouille/constants/spaces.dart';
 import 'widgets/draft_screen.dart';
 import 'widgets/tab_bar.dart';
-import 'widgets/uploaded_screen.dart';
+import 'widgets/add property/uploaded/uploaded_screen.dart';
 
 class PropertyOptionScreen extends StatefulWidget {
   const PropertyOptionScreen({super.key});

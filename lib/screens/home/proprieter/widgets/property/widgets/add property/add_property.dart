@@ -181,16 +181,17 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
 
               final data = form.value;
               Map<String, dynamic> propertyData = {
-                'bedrooms': _selectedBedroom,
+                'bedrooms': _selectedBedroom.toString(),
                 'area': data["Area"],
                 'title': data["Title"],
                 'description': data["Description"],
                 'address': data["Address"],
                 'lounge': toggleProvider.hasLounge,
-                'monthly rent': monthlyRentValue,
+                'monthlyRent': monthlyRentValue,
                 'user_id': AuthProvider.getCurrentUserId(),
               };
               PropertyProvider.create(propertyData);
+              Navigator.pop(context);
             },
             child: const Center(
               child: Text(
