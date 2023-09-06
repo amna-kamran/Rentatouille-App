@@ -73,7 +73,7 @@ class PropertyPageScreen extends StatelessWidget {
                           ),
                           if (index != labels.length - 1)
                             const Divider(
-                              height: 4,
+                              height: 7,
                               color: Colors.grey,
                             ),
                         ],
