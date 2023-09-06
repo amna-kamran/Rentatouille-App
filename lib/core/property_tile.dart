@@ -7,7 +7,7 @@ import 'package:rentatouille/services/auth/auth_provider.dart';
 import '../constants/url.dart';
 import '../model/property.dart';
 
-class PropertyTile extends StatefulWidget {
+class PropertyTile extends StatelessWidget {
   final Property property;
 
   const PropertyTile({
@@ -16,19 +16,16 @@ class PropertyTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<PropertyTile> createState() => _PropertyTileState();
-}
-
-class _PropertyTileState extends State<PropertyTile> {
-  @override
   Widget build(BuildContext context) {
-    debugPrint(widget.property.address);
+    debugPrint(property.address);
     debugPrint("in property tile");
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const PropertyPageScreen(),
+            builder: (context) => PropertyPageScreen(
+              property: property,
+            ),
           ),
         );
         debugPrint("card pressed");
@@ -65,17 +62,17 @@ class _PropertyTileState extends State<PropertyTile> {
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      widget.property.title,
+                      property.title,
                       style: const TextStyle(fontSize: 16.0),
                     ),
                     Text(
-                      "Address: ${widget.property.address}",
+                      "Address: ${property.address}",
                       style: const TextStyle(fontSize: 16.0),
                     ),
                     const SizedBox(height: 8.0),
                     // Price in PKR
                     Text(
-                      "PKR: ${widget.property.monthlyRent}",
+                      "PKR: ${property.monthlyRent}",
                       style: const TextStyle(
                         fontSize: 18.0,
                         color: Colors.green,

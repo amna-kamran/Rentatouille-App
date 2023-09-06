@@ -22,10 +22,6 @@ class AddPropertyScreen extends StatefulWidget {
 class _AddPropertyScreenState extends State<AddPropertyScreen> {
   int _selectedBedroom = 0;
   String _selectedUnit = 'Sq.Ft';
-  final divider = const Divider(
-    height: 40,
-    thickness: 1,
-  );
 
   void _handleBedroomSelection(int selectedNumber) => setState(() {
         _selectedBedroom = selectedNumber;
@@ -88,7 +84,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                             ),
                         ],
                       ),
-                      divider,
+                      Spaces.divider,
                       Row(
                         children: [
                           Expanded(
@@ -121,22 +117,22 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                           Spaces.w10
                         ],
                       ),
-                      divider,
+                      Spaces.divider,
                       AppInputTextField(
                         labelText: "Title",
                         fieldType: FieldType.text,
                       ),
-                      divider,
+                      Spaces.divider,
                       AppInputTextField(
                         labelText: "Description",
                         fieldType: FieldType.text,
                       ),
-                      divider,
+                      Spaces.divider,
                       AppInputTextField(
                         labelText: "Address",
                         fieldType: FieldType.text,
                       ),
-                      divider,
+                      Spaces.divider,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -160,7 +156,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                           ),
                         ],
                       ),
-                      divider,
+                      Spaces.divider,
                       const MonthlyRentWidget(),
                     ],
                   ),

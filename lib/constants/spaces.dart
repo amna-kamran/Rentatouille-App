@@ -29,4 +29,8 @@ class Spaces {
   static const w75 = SizedBox(width: 75);
   static const w80 = SizedBox(width: 80);
   static const w90 = SizedBox(width: 90);
+  static const divider = Divider(
+    height: 40,
+    thickness: 1,
+  );
 }
