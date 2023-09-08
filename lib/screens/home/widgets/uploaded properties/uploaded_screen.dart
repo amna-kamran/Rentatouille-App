@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rentatouille/core/property_tile.dart';
 import 'package:rentatouille/model/property.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UploadedScreen extends StatelessWidget {
   const UploadedScreen({
@@ -11,9 +12,10 @@ class UploadedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Property>>(
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       stream: Provider.of<PropertyProvider>(context).fetchProperties(),
-      builder: (BuildContext context, AsyncSnapshot<List<Property>> snapshot) {
+      builder: (BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -23,21 +25,24 @@ class UploadedScreen extends StatelessWidget {
           return Center(
             child: Text('Error loading properties: ${snapshot.error}'),
           );
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+        } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return const Center(
             child: Text('No properties available'),
           );
         } else {
-          final properties = snapshot.data!;
+          final properties = snapshot.data!.docs;
 
           return ListView.builder(
             itemCount: properties.length,
             itemBuilder: (BuildContext context, int index) {
-              final property = properties[index];
-              debugPrint(property.address);
+              final documentId = properties[index].id;
+              final propertyData = properties[index].data();
+
+              final property = Property.fromMap(propertyData);
 
               return PropertyTile(
                 property: property,
+                id: documentId,
               );
             },
           );

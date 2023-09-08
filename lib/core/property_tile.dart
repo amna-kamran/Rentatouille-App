@@ -9,10 +9,12 @@ import '../model/property.dart';
 
 class PropertyTile extends StatelessWidget {
   final Property property;
+  final String id;
 
   const PropertyTile({
     Key? key,
     required this.property,
+    required this.id,
   }) : super(key: key);
 
   @override
