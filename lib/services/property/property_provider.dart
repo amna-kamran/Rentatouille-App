@@ -21,28 +21,10 @@ class PropertyProvider extends ChangeNotifier {
     }
   }
 
-  Stream<List<Property>> fetchProperties() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchProperties() {
     return FirebaseFirestore.instance
         .collection('properties')
         .where('user_id', isEqualTo: AuthProvider.getCurrentUserId())
-        .snapshots()
-        .map(
-      (QuerySnapshot querySnapshot) {
-        List<Property> properties = [];
-
-        for (QueryDocumentSnapshot document in querySnapshot.docs) {
-          Map<String, dynamic> prop = document.data() as Map<String, dynamic>;
-
-          Property data = Property.fromMap(prop);
-
-          //debugPrint(data.toString());
-          //Property property = Property.fromMap(data);
-
-          properties.add(data);
-        }
-
-        return properties;
-      },
-    );
+        .snapshots();
   }
 }
