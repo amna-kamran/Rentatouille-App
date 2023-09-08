@@ -8,21 +8,23 @@ class MonthlyRentWidget extends StatefulWidget {
   const MonthlyRentWidget({super.key});
 
   @override
-  _MonthlyRentWidgetState createState() => _MonthlyRentWidgetState();
+  MonthlyRentWidgetState createState() => MonthlyRentWidgetState();
 }
 
-class _MonthlyRentWidgetState extends State<MonthlyRentWidget> {
+class MonthlyRentWidgetState extends State<MonthlyRentWidget> {
   final TextEditingController _controller = TextEditingController();
   String formattedValue = '';
 
   void formatNumber(String? value) {
     final numberFormat = NumberFormat("#,###");
     final parsedValue = int.tryParse(value!) ?? 0;
-    setState(() {
-      formattedValue = numberFormat.format(parsedValue);
-      Provider.of<MonthlyRentProvider>(context, listen: false)
-          .setMonthlyRent(_controller.text);
-    });
+    setState(
+      () {
+        formattedValue = numberFormat.format(parsedValue);
+        Provider.of<MonthlyRentProvider>(context, listen: false)
+            .setMonthlyRent(_controller.text);
+      },
+    );
   }
 
   @override

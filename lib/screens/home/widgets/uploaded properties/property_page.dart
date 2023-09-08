@@ -87,11 +87,11 @@ class PropertyPageScreen extends StatelessWidget {
                             );
                           }),
                           Spaces.divider,
-                          CustomDropdown(
+                          const CustomDropdown(
                             title: "Reviews",
                           ),
                           Spaces.h15,
-                          CustomDropdown(
+                          const CustomDropdown(
                             title: "Q/A",
                           ),
                         ],

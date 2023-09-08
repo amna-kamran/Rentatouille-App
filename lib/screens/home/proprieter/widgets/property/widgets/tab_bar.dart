@@ -6,6 +6,7 @@ class TabBarWithIndicator extends StatelessWidget {
   final List<String> tabs;
 
   const TabBarWithIndicator({
+    super.key,
     required this.currentIndex,
     required this.onTap,
     required this.tabs,
