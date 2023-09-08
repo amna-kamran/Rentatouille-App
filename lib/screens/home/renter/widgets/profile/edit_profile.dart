@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rentatouille/core/profile/profile_widget.dart';
-import 'package:rentatouille/core/profile/text_field_widget.dart';
+import 'package:rentatouille/screens/home/widgets/profile/profile_widget.dart';
+import 'package:rentatouille/screens/home/widgets/profile/text_field_widget.dart';
 import 'package:rentatouille/model/user.dart';
 import 'package:rentatouille/utils/user_preferences.dart';
 

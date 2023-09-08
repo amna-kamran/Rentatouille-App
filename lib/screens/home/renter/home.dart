@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
-import 'package:rentatouille/screens/home/renter/widgets/profile/profile.dart';
+import 'package:rentatouille/screens/home/widgets/profile/profile_page.dart';
+import 'package:rentatouille/screens/home/widgets/uploaded%20properties/uploaded_screen.dart';
 import 'package:rentatouille/screens/news/home.dart';
 import 'package:rentatouille/services/bottom_navbar_provider.dart';
-import 'widgets/property_screen.dart';
 
 class RenterHome extends StatelessWidget {
   const RenterHome({super.key});
@@ -54,7 +54,7 @@ class RenterHome extends StatelessWidget {
             index: bottomNavigationBarProvider.currentIndex,
             children: const [
               NewsHomeScreen(),
-              PropertyScreen(),
+              UploadedScreen(),
               ProfileScreen(),
             ],
           );
