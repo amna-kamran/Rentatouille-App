@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/news/news_provider.dart';
 import 'package:rentatouille/wrapper.dart';
-
 import 'firebase_options.dart';
 import 'services/bottom_navbar_provider.dart';
 import 'services/property/monthly_rent_provider.dart';

@@ -37,7 +37,6 @@ class UploadedScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final documentId = properties[index].id;
               final propertyData = properties[index].data();
-
               final property = Property.fromMap(propertyData);
 
               return PropertyTile(

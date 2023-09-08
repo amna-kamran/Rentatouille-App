@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:rentatouille/screens/home/widgets/uploaded%20properties/property_page.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
+import 'package:rentatouille/services/property/property_provider.dart';
 
 import '../constants/url.dart';
 import '../model/property.dart';
@@ -19,10 +21,10 @@ class PropertyTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(property.address);
-    debugPrint("in property tile");
     return InkWell(
       onTap: () {
+        Provider.of<PropertyProvider>(context, listen: false).selectId(id);
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => PropertyPageScreen(
@@ -30,7 +32,6 @@ class PropertyTile extends StatelessWidget {
             ),
           ),
         );
-        debugPrint("card pressed");
       },
       child: Card(
         elevation: 4.0,
