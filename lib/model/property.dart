@@ -10,7 +10,7 @@ class Property {
   final String address;
   final bool lounge;
   final String monthlyRent;
-  final String user_id;
+  final String userId;
 
   // Constructor with named parameters to initialize properties
   Property({
@@ -21,7 +21,7 @@ class Property {
     required this.address,
     required this.lounge,
     required this.monthlyRent,
-    required this.user_id,
+    required this.userId,
   });
 
   // Copy constructor for creating a new Property with modified properties
@@ -33,7 +33,7 @@ class Property {
     String? address,
     bool? lounge,
     String? monthlyRent,
-    String? user_id,
+    String? userId,
   }) {
     return Property(
       bedrooms: bedrooms ?? this.bedrooms,
@@ -43,7 +43,7 @@ class Property {
       address: address ?? this.address,
       lounge: lounge ?? this.lounge,
       monthlyRent: monthlyRent ?? this.monthlyRent,
-      user_id: user_id ?? this.user_id,
+      userId: userId ?? this.userId,
     );
   }
 
@@ -57,7 +57,7 @@ class Property {
       'address': address,
       'lounge': lounge,
       'monthlyRent': monthlyRent,
-      'user_id': user_id,
+      'user_id': userId,
     };
   }
 
@@ -72,7 +72,7 @@ class Property {
         address: map['address'] as String? ?? 'Default Address',
         lounge: map['lounge'] as bool? ?? false,
         monthlyRent: map['monthlyRent'] as String? ?? 'Default Monthly Rent',
-        user_id: map['user_id'] as String? ?? 'Default User ID',
+        userId: map['user_id'] as String? ?? 'Default User ID',
       );
     } catch (e) {
       debugPrint('Error creating Property object from map: $e');
@@ -84,7 +84,7 @@ class Property {
           address: "address",
           lounge: false,
           monthlyRent: "monthlyRent",
-          user_id: "user_id");
+          userId: "user_id");
     }
   }
 
@@ -97,7 +97,7 @@ class Property {
 
   @override
   String toString() {
-    return 'Property(bedrooms: $bedrooms, area: $area, title: $title, description: $description, address: $address, lounge: $lounge, monthlyRent: $monthlyRent, user_id: $user_id)';
+    return 'Property(bedrooms: $bedrooms, area: $area, title: $title, description: $description, address: $address, lounge: $lounge, monthlyRent: $monthlyRent, user_id: $userId)';
   }
 
   @override
@@ -111,7 +111,7 @@ class Property {
         other.address == address &&
         other.lounge == lounge &&
         other.monthlyRent == monthlyRent &&
-        other.user_id == user_id;
+        other.userId == userId;
   }
 
   @override
@@ -123,6 +123,6 @@ class Property {
         address.hashCode ^
         lounge.hashCode ^
         monthlyRent.hashCode ^
-        user_id.hashCode;
+        userId.hashCode;
   }
 }

@@ -6,15 +6,15 @@ import 'package:rentatouille/constants/spaces.dart';
 class CustomDropdown extends StatefulWidget {
   final String title;
 
-  CustomDropdown({
+  const CustomDropdown({
     Key? key,
     required this.title,
   }) : super(key: key);
   @override
-  _CustomDropdownState createState() => _CustomDropdownState();
+  CustomDropdownState createState() => CustomDropdownState();
 }
 
-class _CustomDropdownState extends State<CustomDropdown> {
+class CustomDropdownState extends State<CustomDropdown> {
   bool isDropdownOpen = false;
 
   void toggleDropdown() {
