@@ -36,12 +36,6 @@ class PropertyProvider extends ChangeNotifier {
       final QuerySnapshot<Map<String, dynamic>> existingIds = (await collection
           .where('id', isEqualTo: propertyId)
           .get()) as QuerySnapshot<Map<String, dynamic>>;
-      debugPrint(propertyId);
-      existingIds.docs.forEach((doc) {
-        final data = doc.data();
-        final id = data['id'];
-        print('ID: $id');
-      });
 
       if (existingIds.docs.isNotEmpty) {
         throw Exception("Property ID already requested");
