@@ -16,10 +16,10 @@ class AddPropertyScreen extends StatefulWidget {
   static final _formKey = GlobalKey<FormBuilderState>();
 
   @override
-  _AddPropertyScreenState createState() => _AddPropertyScreenState();
+  AddPropertyScreenState createState() => AddPropertyScreenState();
 }
 
-class _AddPropertyScreenState extends State<AddPropertyScreen> {
+class AddPropertyScreenState extends State<AddPropertyScreen> {
   int _selectedBedroom = 0;
   String _selectedUnit = 'Sq.Ft';
 
