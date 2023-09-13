@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:rentatouille/screens/home/renter/widgets/request/pending_request.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String title;
+  final Widget child; // Add a child widget
 
   const CustomDropdown({
     Key? key,
     required this.title,
+    required this.child, // Accept a child widget
   }) : super(key: key);
 
   @override
@@ -54,8 +55,8 @@ class CustomDropdownState extends State<CustomDropdown> {
             ),
           ),
           if (isDropdownOpen)
-            const Flexible(
-              child: PendingRequestScreen(),
+            Flexible(
+              child: widget.child,
             ),
         ],
       ),

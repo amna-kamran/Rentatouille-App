@@ -4,13 +4,26 @@ import 'package:rentatouille/model/property.dart';
 
 class RequestTile extends StatelessWidget {
   const RequestTile({
-    super.key,
+    Key? key,
     required this.property,
-  });
+    required this.status,
+  }) : super(key: key);
+
   final Property property;
+  final RequestStatus status;
 
   @override
   Widget build(BuildContext context) {
+    Icon? statusIcon;
+
+    if (status == RequestStatus.accepted) {
+      statusIcon = const Icon(Icons.check, color: Colors.green);
+    } else if (status == RequestStatus.pending) {
+      statusIcon = const Icon(Icons.access_time, color: Colors.grey);
+    } else if (status == RequestStatus.declined) {
+      statusIcon = const Icon(Icons.close, color: Colors.red);
+    }
+
     return InkWell(
       onTap: () {},
       child: Container(
@@ -48,13 +61,16 @@ class RequestTile extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(
-              Icons.access_time,
-              color: Colors.grey,
-            ),
+            if (statusIcon != null) statusIcon,
           ],
         ),
       ),
     );
   }
+}
+
+enum RequestStatus {
+  accepted,
+  pending,
+  declined,
 }

@@ -1,20 +1,28 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:rentatouille/constants/spaces.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'package:rentatouille/model/property.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
-
 import 'request_tile.dart';
 
-class PendingRequestScreen extends StatefulWidget {
-  const PendingRequestScreen({Key? key}) : super(key: key);
+class RequestScreen extends StatefulWidget {
+  final bool isPending;
+  final bool isDeclined;
+  final bool isAccepted;
+
+  const RequestScreen({
+    Key? key,
+    this.isPending = false,
+    this.isDeclined = false,
+    this.isAccepted = false,
+  }) : super(key: key);
 
   @override
-  State<PendingRequestScreen> createState() => _PendingRequestScreenState();
+  State<RequestScreen> createState() => _RequestScreenState();
 }
 
-class _PendingRequestScreenState extends State<PendingRequestScreen> {
+class _RequestScreenState extends State<RequestScreen> {
   @override
   void initState() {
     super.initState();
@@ -49,6 +57,15 @@ class _PendingRequestScreenState extends State<PendingRequestScreen> {
             itemBuilder: (BuildContext context, int index) {
               final requestData = requests[index].data();
               final propertyId = requestData['id'];
+              final isPending = requestData['pending'] == true;
+              final isDeclined = requestData['declined'] == true;
+              final isAccepted = requestData['accepted'] == true;
+
+              if ((widget.isPending && !isPending) ||
+                  (widget.isDeclined && !isDeclined) ||
+                  (widget.isAccepted && !isAccepted)) {
+                return const SizedBox.shrink();
+              }
 
               return Column(
                 children: [
@@ -71,8 +88,12 @@ class _PendingRequestScreenState extends State<PendingRequestScreen> {
                         final property = propertySnapshot.data!;
                         debugPrint("here");
                         return RequestTile(
-                          property: property,
-                        );
+                            property: property,
+                            status: isPending
+                                ? RequestStatus.pending
+                                : isDeclined
+                                    ? RequestStatus.declined
+                                    : RequestStatus.accepted);
                       }
                     },
                   ),

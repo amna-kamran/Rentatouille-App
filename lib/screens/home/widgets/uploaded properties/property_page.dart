@@ -89,10 +89,12 @@ class PropertyPageScreen extends StatelessWidget {
                           Spaces.divider,
                           const CustomDropdown(
                             title: "Reviews",
+                            child: Spaces.h10,
                           ),
                           Spaces.h15,
                           const CustomDropdown(
                             title: "Q/A",
+                            child: Spaces.h10,
                           ),
                         ],
                       ),
