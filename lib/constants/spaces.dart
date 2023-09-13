@@ -33,4 +33,8 @@ class Spaces {
     height: 40,
     thickness: 1,
   );
+  static const dividedNoSpace = Divider(
+    thickness: 1,
+    color: Colors.grey,
+  );
 }

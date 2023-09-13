@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
 
 class RentPropertyButton extends StatelessWidget {
@@ -13,7 +14,15 @@ class RentPropertyButton extends StatelessWidget {
       width: double.infinity,
       child: InkWell(
         onTap: () {
-          PropertyProvider.storeRequest(propertyId);
+          PropertyProvider.storeRequest(
+            {
+              'id': propertyId,
+              'accepted': false,
+              'declined': false,
+              'pending': true,
+              'renter_id': AuthProvider.getCurrentUserId(),
+            },
+          );
         },
         child: const Padding(
           padding: EdgeInsets.all(16.0),

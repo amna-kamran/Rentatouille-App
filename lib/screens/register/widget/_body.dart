@@ -75,7 +75,8 @@ class __BodyState extends State<_Body> {
 
                           Navigator.pop(context);
                         },
-                        child: const Text("Register")),
+                        child: const Text("Register"),
+                      ),
               ],
             ),
           ),

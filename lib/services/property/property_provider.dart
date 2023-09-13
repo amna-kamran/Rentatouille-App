@@ -29,29 +29,51 @@ class PropertyProvider extends ChangeNotifier {
         .snapshots();
   }
 
-  static Future<void> storeRequest(String? propertyId) async {
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchRequests() {
+    return FirebaseFirestore.instance
+        .collection('requests')
+        .where('renter_id', isEqualTo: AuthProvider.getCurrentUserId())
+        .snapshots();
+  }
+
+  static Future<void> storeRequest(Map<String, dynamic> requestData) async {
     try {
       final CollectionReference collection = _firestore.collection('requests');
-
       final QuerySnapshot<Map<String, dynamic>> existingIds = (await collection
-          .where('id', isEqualTo: propertyId)
+          .where('id', isEqualTo: requestData['id'])
           .get()) as QuerySnapshot<Map<String, dynamic>>;
-
       if (existingIds.docs.isNotEmpty) {
         throw Exception("Property ID already requested");
       }
-
       int timestamp = DateTime.now().microsecondsSinceEpoch;
       debugPrint(timestamp.toString());
-
-      Map<String, dynamic> requestData = {
-        'id': propertyId,
-      };
 
       await collection.doc(timestamp.toString()).set(requestData);
     } catch (e) {
       debugPrint(e.toString());
       throw ("Some error occurred");
+    }
+  }
+
+  Future<Property?> getPropertyById(String id) async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> propertySnapshot =
+          await FirebaseFirestore.instance
+              .collection('properties')
+              .doc(id)
+              .get();
+
+      if (propertySnapshot.exists) {
+        final propertyData = propertySnapshot.data();
+        if (propertyData != null) {
+          return Property.fromMap(propertyData);
+        }
+      }
+
+      return null;
+    } catch (e) {
+      debugPrint(e.toString());
+      throw ("Error fetching property by ID");
     }
   }
 

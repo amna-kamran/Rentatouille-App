@@ -1,11 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:rentatouille/screens/home/widgets/uploaded%20properties/property_page.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
-
 import '../constants/url.dart';
 import '../model/property.dart';
 

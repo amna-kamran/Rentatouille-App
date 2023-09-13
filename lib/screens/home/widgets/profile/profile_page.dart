@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rentatouille/constants/url.dart';
 import 'package:rentatouille/screens/home/proprieter/widgets/request/proprieter_request.dart';
 import 'package:rentatouille/screens/home/renter/widgets/request/renter_request.dart';
+import 'package:rentatouille/screens/home/renter/widgets/request/request_tile.dart';
 import 'package:rentatouille/screens/home/widgets/toggle_button.dart';
 import 'package:rentatouille/services/auth/auth_provider.dart';
 import 'package:rentatouille/services/auth/google%20auth/google_auth.dart';
@@ -64,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
