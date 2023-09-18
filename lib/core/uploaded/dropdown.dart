@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String title;
-  final Widget child; // Add a child widget
+  final Widget child;
 
   const CustomDropdown({
     Key? key,
     required this.title,
-    required this.child, // Accept a child widget
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class CustomDropdownState extends State<CustomDropdown> {
                   ),
                 ),
                 Icon(
-                  isDropdownOpen ? Icons.arrow_drop_down : Icons.arrow_drop_up,
+                  isDropdownOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
                 ),
               ],
             ),

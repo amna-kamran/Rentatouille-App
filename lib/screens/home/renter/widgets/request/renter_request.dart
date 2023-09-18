@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:rentatouille/constants/spaces.dart';
 import 'package:rentatouille/core/uploaded/dropdown.dart';
-import 'package:rentatouille/screens/home/renter/widgets/request/pending_request.dart';
+import 'package:rentatouille/screens/home/renter/widgets/request/fetch_request.dart';
 
-class RenterRequestScreen extends StatelessWidget {
+class RenterRequestScreen extends StatefulWidget {
   const RenterRequestScreen({super.key});
 
+  @override
+  State<RenterRequestScreen> createState() => _RenterRequestScreenState();
+}
+
+class _RenterRequestScreenState extends State<RenterRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
