@@ -26,17 +26,17 @@ class _RenterRequestScreenState extends State<RenterRequestScreen> {
             children: [
               CustomDropdown(
                 title: "Pending Requests",
-                child: RequestScreen(isPending: true),
+                child: FetchRequest(isPending: true),
               ),
               Spaces.divider,
               CustomDropdown(
                 title: "Accepted",
-                child: RequestScreen(isAccepted: true),
+                child: FetchRequest(isAccepted: true),
               ),
               Spaces.divider,
               CustomDropdown(
                 title: "Declined",
-                child: RequestScreen(isDeclined: true),
+                child: FetchRequest(isDeclined: true),
               ),
             ],
           ),

@@ -6,12 +6,12 @@ import 'package:rentatouille/model/property.dart';
 import 'package:rentatouille/services/property/property_provider.dart';
 import 'request_tile.dart';
 
-class RequestScreen extends StatefulWidget {
+class FetchRequest extends StatefulWidget {
   final bool isPending;
   final bool isDeclined;
   final bool isAccepted;
 
-  const RequestScreen({
+  const FetchRequest({
     Key? key,
     this.isPending = false,
     this.isDeclined = false,
@@ -19,10 +19,10 @@ class RequestScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<RequestScreen> createState() => _RequestScreenState();
+  State<FetchRequest> createState() => _FetchRequestState();
 }
 
-class _RequestScreenState extends State<RequestScreen> {
+class _FetchRequestState extends State<FetchRequest> {
   @override
   void initState() {
     super.initState();
